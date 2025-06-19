@@ -1,6 +1,6 @@
 import "./styles.css";
 import data from "./data.json";
-console.log(data);
+// console.log(data);
 export default function App() {
   return (
     <div className="component-wrapper">
@@ -18,20 +18,35 @@ function Summary() {
   return (
     <>
       <div>Summary</div>
-      <ScoreItem />
+      <ScoresList data={data} />
       <Button />
     </>
   );
 }
 
-function ScoreItem() {
+function ScoresList({ data }) {
+  console.log(data);
   return (
-    <div>
-      <div>icon</div>
-      <div>item name</div>
-      <div>score</div>
-      <div> / total_pts</div>
-    </div>
+    <>
+      <ul className="grid-container scores-list">
+        {data.map((skill) => (
+          <li key={skill.category}>
+            <span>
+              <img src={skill.icon}></img>
+            </span>
+            <span>{skill.category}</span>
+            <span>{skill.score}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div>
+        <div>icon</div>
+        <div>item name</div>
+        <div>score</div>
+        <div> / total_pts</div>
+      </div>
+    </>
   );
 }
 
